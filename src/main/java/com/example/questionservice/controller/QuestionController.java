@@ -39,17 +39,22 @@ public class QuestionController {
 
     @GetMapping("generate")
     public ResponseEntity<List<Integer>> getQuestionsForQuiz(@RequestParam String categoryName, @RequestParam Integer numQuestions) {
+        System.out.println("getQuestionsForQuiz() - Server Port: " + environment.getProperty("local.server.port"));
         return questionService.getQuestionsForQuiz(categoryName, numQuestions);
     }
 
     @PostMapping("getQuestions")
     public ResponseEntity<List<QuestionWrapper>> getQuestionsFromId(@RequestBody List<Integer> questionIds) {
+        System.out.println("getQuestionsFromId() - Server Port: " + environment.getProperty("local.server.port"));
         return questionService.getQuestionsFromId(questionIds);
     }
 
     @PostMapping("getScore")
     public ResponseEntity<Integer> getScore(@RequestBody List<Response> responses) {
+        System.out.println("getScore() - Server Port: " + environment.getProperty("local.server.port"));
         return questionService.getScore(responses);
     }
+
+    // FeignClient - Has a internal load balancer
 
 }
